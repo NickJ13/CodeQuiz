@@ -66,7 +66,7 @@ function renderQuestionToScreen(questionObject) {
   var questionList = document.createElement("ul");
 
   for (let i = 1; i <= 4; i++) {
-    var choice = document.createElement("li");
+    var choice = document.createElement("button");
     choice.textContent = questionObject[`choice${i}`];
     questionList.append(choice);
   }
