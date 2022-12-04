@@ -104,5 +104,5 @@ function startGame() {
   button2.textContent = questionsArray[2].choice2;
   button3.textContent = questionsArray[3].choice3;
   button4.textContent = questionsArray[4].choice4;
-  var choice1 = document.createElement()
+  
 }
