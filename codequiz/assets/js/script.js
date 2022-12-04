@@ -82,7 +82,9 @@ startQuizBtn.addEventListener("click", function () {
   // }
 });
 
-startQuizBtn.addEventListener("click", function () {
+startQuizBtn.addEventListener("click", startGame);
+
+function startGame() {
   var intervalId = setInterval(function () {
     console.log(`Time left is ${time} sec`);
     timerSpan.textContent = time;
@@ -91,4 +93,16 @@ startQuizBtn.addEventListener("click", function () {
       clearInterval(intervalId);
     }
   }, 1000);
-});
+  console.log("startbtnwasclicked");
+  mainEl.replaceChildren();
+  renderQuestionToScreen(questionsArray[i]);
+  var button1 = document.createElement("button");
+  var button2 = document.createElement("button");
+  var button3 = document.createElement("button");
+  var button4 = document.createElement("button");
+  button1.textContent = questionsArray[1].choice1;
+  button2.textContent = questionsArray[2].choice2;
+  button3.textContent = questionsArray[3].choice3;
+  button4.textContent = questionsArray[4].choice4;
+  var choice1 = document.createElement()
+}
