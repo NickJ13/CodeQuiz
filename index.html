@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript Quiz</title>
-    <link rel="stylesheet" href="./codequiz/assets/css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./codequiz/assets/css/style.css" />
+  </head>
+  <body>
     <header>
-        <button>View Highscores</button>
-        <div>
-            time <span class="timerspan" id="timerspan"></span>
-        </div>
+      <button>View Highscores</button>
+      <h1>JavaScript Quiz</h1>
+      <div>time <span class="timerspan" id="timerspan"></span></div>
     </header>
-    <main>
-        Click the start button to begin the quiz
-        <button id="startQuizBtn">Start Quiz</button>
-
+    <main class="mainQuiz">
+      Click the start button to begin the quiz
+      <button id="startQuizBtn">Start Quiz</button>
+      <section>
+        <div class="qtitle"></div>
+        <div id="userChoices"></div>
+      </section>
     </main>
-    <footer>footertext</footer>
-    
+    <footer class="footer">footertext</footer>
+
     <script src="./codequiz/assets/js/script.js"></script>
-</body>
+  </body>
 </html>
