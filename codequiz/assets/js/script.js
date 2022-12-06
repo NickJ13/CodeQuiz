@@ -6,9 +6,6 @@ var time = 60;
 var currentQuestionIndex = 0;
 var uChoices = document.getElementById("userChoices");
 
-// you might store your questions and answers in an array, i.e. a list
-// and then you cycle through that list, displaying a question and its 4 choices
-//
 
 var questionsArray = [
   {
@@ -58,9 +55,9 @@ function renderQuestionToScreen(questionObject) {
     choiceBtn.setAttribute('style', 'display:block;');
     console.log(questionObject.choice[i]);
     choiceBtn.textContent = questionObject.choice[i];
-    console.log(questionList);
+    // console.log(questionList);
     questionList.append(choiceBtn);
-    console.log(questionList);
+    // console.log(questionList);
 
   }
   mainEl.append(questionHeader, questionList);
@@ -85,11 +82,18 @@ function startTimer() {
     if (time <= 0) {
       clearInterval(intervalId);
     }
-  }, 1000);
-
-  
+  }, 1000); 
 };
 
+function ifCorrect() {
+  if (uChoices === questionsArray.correctChoice) {
+  console.log(correctChoice)
+} else if (uChoices === questionsArray.choice) {
+  console.log('Incorrect Choice');
+ 
+}
+
+};
 
 
 
