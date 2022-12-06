@@ -86,14 +86,17 @@ function startTimer() {
 };
 
 function ifCorrect() {
-  if (uChoices === questionsArray.correctChoice) {
-  console.log(correctChoice)
-} else if (uChoices === questionsArray.choice) {
-  console.log('Incorrect Choice');
- 
+  for (var i = 0; i < questionsArray.question.length; i++) {
+    var question
+  }
 }
 
-};
 
 
+// 1. iterate each question in your questions array
+// 2. for each iteration, you need to display the question, then the answer choices
+// 3. once the question is rendered, apply the click events / helper function
+// 4. the helper function mentioned above needs to check the selected answer and compare against the correct answer
+// 5. use a if else to determine what the code should do from step 4.  (if correct, add points.  If not, deduct time)
+// 6. move to next question and repeat
 
