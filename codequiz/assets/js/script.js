@@ -4,7 +4,9 @@ var mainEl = document.querySelector("main");
 var buttons = document.querySelectorAll("button");
 var time = 60;
 var currentQuestionIndex = 0;
-var uChoices = document.getElementById("userChoices");
+// var uChoices = document.getElementById("userChoices");
+var questionTitleEl = document.querySelector(".qtitle")
+var userBtnsEl = document.getElementById("choice-btns")
 
 var questionsArray = [
   {
@@ -34,11 +36,28 @@ var questionsArray = [
   },
 ];
 
-// 2. Allow the user to choose an answer to the question
-// 3. determine if that choice is correct or not
-// 4. if correct, write code that accounts for a correct answer
-// 5. If incorrect, write code to account for an incorrect answer
-// 6. Once both of those are done, call your function to render the next question
+function choiceClick(event) {
+  console.log(event);
+  var btnClicked = event.target;
+  // console.log(event.target.innerText);
+  // console.log(event.target.textContent);
+  // console.log(questionsArray[0].correctChoice);
+  if (btnClicked.textContent === questionsArray[currentQuestionIndex].correctChoice) {
+    currentQuestionIndex = currentQuestionIndex + 1;
+  } else {
+    time = time - 15;
+  }
+  if (currentQuestionIndex >= questionsArray.length) {
+    endQuiz();
+  };
+  if (time <= 0) {
+    endQuiz()
+  };
+  userBtnsEl.textContent = '';
+  renderQuestionToScreen(questionsArray[currentQuestionIndex]);
+
+}
+
 
 function renderQuestionToScreen(questionObject) {
   console.log("renderQuestionToScreen");
@@ -46,6 +65,7 @@ function renderQuestionToScreen(questionObject) {
   console.log(questionHeader);
   questionHeader.textContent = questionObject.question;
   var questionList = document.createElement("ul");
+  questionList.addEventListener('click', choiceClick);
   // console.log(questionObject);
   for (var i = 0; i < questionObject.choice.length; i++) {
     var choiceBtn = document.createElement("button");
@@ -56,15 +76,14 @@ function renderQuestionToScreen(questionObject) {
     questionList.append(choiceBtn);
     // console.log(questionList);
     choiceBtn.setAttribute("value", questionObject.choice[i]);
-    choiceBtn.onclick = checkAnswer;
+    // choiceBtn.onclick = checkAnswer;
   }
-  mainEl.append(questionHeader, questionList);
-  console.log(mainEl);
+  userBtnsEl.append(questionHeader, questionList);
 }
 
 startQuizBtn.addEventListener("click", function () {
   console.log("startbtnwasclicked");
-  startTimer();
+  // startTimer();
   // console.log(mainEl);
   // mainEl.replaceChildren();
   // console.log(mainEl);
@@ -83,27 +102,4 @@ function startTimer() {
   }, 1000);
 }
 
-function checkAnswer() {
 
-  if (this.value !== questionsArray[currentQuestionIndex].answer) {
-    timer -= 15;
-    var wrongAnswer = document.createElement("h2")
-    wrongAnswer.innerHTML = "Wrong!";
-    wrongAnswer.className = "feedback-answer"
-    //yourfeedbackanswerHTMLelement.appendChild(wrongAnswer);
-  }
-  //if statement for correct answer
-
-  // if statement check time is <=0, handle ending quiz
-
-  // increase current questionIndex
-  // if statement to check if the current q index === the length of array end the quiz 
-  // else render next question
-}
-
-// 1. iterate each question in your questions array
-// 2. for each iteration, you need to display the question, then the answer choices
-// 3. once the question is rendered, apply the click events / helper function
-// 4. the helper function mentioned above needs to check the selected answer and compare against the correct answer
-// 5. use a if else to determine what the code should do from step 4.  (if correct, add points.  If not, deduct time)
-// 6. move to next question and repeat
