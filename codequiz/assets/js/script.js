@@ -10,6 +10,7 @@ var userBtnsEl = document.getElementById("choice-btns");
 var scoreInitialsEl = document.querySelector("#initials");
 
 var questionsArray = [
+  
   {
     question: "A name of storage location",
     choice: ["operator", "array", "variable", "function"],
@@ -115,19 +116,27 @@ function endQuiz() {
 }
 
 function saveScore() {
-  console.log("saveScore");
+  // console.log("saveScore");
   var highScoreInit = scoreInitialsEl.value;
-  console.log(highScoreInit);
-  var score = {
+  // console.log(highScoreInit);
+  var scoreValue = {
     initials: highScoreInit,
-    score: time,
-  };
-  // var storedScore = JSON.parse(localStorage.getItem("score"));
-  // if (storedScore !== null) {
-  //   todos = storedScore;
-  // }
-  localStorage.setItem("highScores", JSON.stringify(score));
+    score: time
+    };
+
+   var savedHs = JSON.parse(localStorage.getItem("saveHighScores"));
+   console.log(savedHs);
+   if (savedHs === null) {
+    savedHs = [];
+  }
+  console.log(savedHs);
+  savedHs.push(scoreValue);
+  console.log(savedHs);
+  localStorage.setItem('saveHighScores', JSON.stringify(savedHs));
+  window.location.href = './highscore.html';
+
 }
 
 document.getElementById("submit-btn").addEventListener("click", saveScore);
 // document.getElementById('submit-btn').onclick = saveScore;
+
