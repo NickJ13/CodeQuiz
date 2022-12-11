@@ -12,13 +12,17 @@ crossorigin="anonymous">
 </head>
 <body>
     <div class="Scores container text-center">
-        <h1>Highscores</h1>
+        <div class="card">
+            <h1>Highscores</h1>
+            <p>initials: <span id="saved-initials"></span></p>
+            <p>score: <span id="saved-score"></span></p>
     </div>
-    <div class="show-scores"></div>
+    <section class="show-scores text-center"></section>
     <div class="buttons container text-center">
-        <button id="goback">Go Back</button>
-        <button id="clearscores">Clear HighScores</button>
+        <a href="./index.html" class="btn btn-primary btn-sm highscores">Go Back</a>
+        <button id="clearscores" class="btn btn-primary btn-sm">Clear HighScores</button>
     </div>
     <script src="./codequiz/assets/js/highscore.js"></script>
 </body>
 </html>
+

@@ -10,7 +10,6 @@ var userBtnsEl = document.getElementById("choice-btns");
 var scoreInitialsEl = document.querySelector("#initials");
 
 var questionsArray = [
-  
   {
     question: "A name of storage location",
     choice: ["operator", "array", "variable", "function"],
@@ -62,23 +61,23 @@ function choiceClick(event) {
   renderQuestionToScreen(questionsArray[currentQuestionIndex]);
 }
 
-function renderQuestionToScreen(questionObject) {
+function renderQuestionToScreen(questionsArray) {
   console.log("renderQuestionToScreen");
   var questionHeader = document.createElement("h3");
   console.log(questionHeader);
-  questionHeader.textContent = questionObject.question;
+  questionHeader.textContent = questionsArray.question;
   var questionList = document.createElement("ul");
   questionList.addEventListener("click", choiceClick);
   // console.log(questionObject);
-  for (var i = 0; i < questionObject.choice.length; i++) {
+  for (var i = 0; i < questionsArray.choice.length; i++) {
     var choiceBtn = document.createElement("button");
     choiceBtn.setAttribute("style", "display:block;");
-    console.log(questionObject.choice[i]);
-    choiceBtn.textContent = questionObject.choice[i];
+    console.log(questionsArray.choice[i]);
+    choiceBtn.textContent = questionsArray.choice[i];
     // console.log(questionList);
     questionList.append(choiceBtn);
     // console.log(questionList);
-    choiceBtn.setAttribute("value", questionObject.choice[i]);
+    choiceBtn.setAttribute("value", questionsArray.choice[i]);
     // choiceBtn.onclick = checkAnswer;
   }
   userBtnsEl.append(questionHeader, questionList);
@@ -116,27 +115,27 @@ function endQuiz() {
 }
 
 function saveScore() {
-  // console.log("saveScore");
+  console.log("saveScore");
   var highScoreInit = scoreInitialsEl.value;
-  // console.log(highScoreInit);
+  console.log(highScoreInit);
   var scoreValue = {
     initials: highScoreInit,
-    score: time
-    };
+    score: time,
+  };
 
-   var savedHs = JSON.parse(localStorage.getItem("saveHighScores"));
-   console.log(savedHs);
-   if (savedHs === null) {
+  var savedHs = "saveHighScores";
+  console.log(savedHs);
+  if (savedHs === null) {
     savedHs = [];
   }
   console.log(savedHs);
   savedHs.push(scoreValue);
   console.log(savedHs);
-  localStorage.setItem('saveHighScores', JSON.stringify(savedHs));
-  window.location.href = './highscore.html';
-
+  localStorage.setItem("saveHighScores", JSON.stringify(savedHs));
+  window.location.href = "./highscore.html";
 }
 
-document.getElementById("submit-btn").addEventListener("click", saveScore);
+document.getElementById("submit-btn").addEventListener("click", function () {
+  // window.location.href = "./highscore.html";
+});
 // document.getElementById('submit-btn').onclick = saveScore;
-
