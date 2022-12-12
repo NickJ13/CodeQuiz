@@ -86,9 +86,6 @@ function renderQuestionToScreen(questionsArray) {
 startQuizBtn.addEventListener("click", function () {
   console.log("startbtnwasclicked");
   startTimer();
-  // console.log(mainEl);
-  // mainEl.replaceChildren();
-  // console.log(mainEl);
   console.log(questionsArray[currentQuestionIndex]);
   renderQuestionToScreen(questionsArray[currentQuestionIndex]);
 });
@@ -105,6 +102,7 @@ function startTimer() {
   }, 1000);
 }
 
+
 function endQuiz() {
   console.log("endQuiz");
   var quizEl = document.querySelector(".quiz");
@@ -112,30 +110,38 @@ function endQuiz() {
   quizEl.setAttribute("style", "display: none");
   highScoreEl.setAttribute("style", "display: block");
   document.getElementById("score").textContent = time;
+  var content = `
+  <input type='text' id='name' placeholder='Enter your name'><br/>
+  <button onclick='saveScore()'>Submit</button><br/>`;
+  document.getElementById('scorebody').innerHTML = content;
 }
 
-function saveScore() {
-  console.log("saveScore");
-  var highScoreInit = scoreInitialsEl.value;
-  console.log(highScoreInit);
-  var scoreValue = {
-    initials: highScoreInit,
-    score: time,
-  };
+function saveScore () {
 
-  var savedHs = "saveHighScores";
-  console.log(savedHs);
-  if (savedHs === null) {
-    savedHs = [];
-  }
-  console.log(savedHs);
-  savedHs.push(scoreValue);
-  console.log(savedHs);
-  localStorage.setItem("saveHighScores", JSON.stringify(savedHs));
-  window.location.href = "./highscore.html";
+  localStorage.setItem('saveScore', time);
+  localStorage.setItem('highScoreInput', document.getElementById('name').value);
+  viewScore();
 }
 
-document.getElementById("submit-btn").addEventListener("click", function () {
-  // window.location.href = "./highscore.html";
-});
-// document.getElementById('submit-btn').onclick = saveScore;
+function viewScore() {
+  let content = 
+  `<h2>` + localStorage.getItem('highScoreInput') + `'s highscore is: </h2>
+  <h3>` + localStorage.getItem('saveScore') + `</h3><br/>
+  
+  <button onclick='clearScore()'>Clear Score</button> <button onclick='resetQuiz()'>Try Again</button>`;
+  document.getElementById('scorebody').innerHTML = content;
+ 
+}
+function clearScore () {
+  localStorage.setItem('saveScore', '');
+  localStorage.setItem('highScoreInput', '');
+  resetQuiz();
+}
+function resetQuiz() {
+  clearInterval(time);
+  time = 60;
+  currentQuestionIndex = -1;
+  window.location.href = "./index.html";
+}
+
+document.getElementById('submit-btn').onclick = saveScore();
